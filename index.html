@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>شركة الأفضل للتبريد والتكييف - جدة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0a1628;
+      --deep:    #0d1f3c;
+      --mid:     #112850;
+      --gold:    #f5c842;
+      --gold2:   #e8b820;
+      --ice:     #a8e6f0;
+      --white:   #ffffff;
+      --muted:   #c8d8e8;
+      --accent:  #1ec8e0;
+      --card-bg: rgba(255,255,255,0.05);
+      --radius:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(10,22,40,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(168,230,240,0.15);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { height: 44px; border-radius: 8px; }
+    .nav-logo-text { font-size: 1rem; font-weight: 700; color: var(--ice); line-height: 1.2; }
+    .nav-logo-text span { display: block; font-size: 0.72rem; color: var(--gold); font-weight: 400; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .25s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--navy); font-weight: 700; font-size: 0.88rem;
+      padding: 9px 22px; border-radius: 30px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,200,66,.4); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 6px; border-radius: 8px; transition: background .2s;
+      background: none; border: none;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.08); }
+    .hamburger span {
+      width: 26px; height: 2px; background: var(--white); border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+      display: block;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile dropdown menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; right: 0; left: 0;
+      background: rgba(10,22,40,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(168,230,240,0.15);
+      z-index: 999;
+      padding: 16px 5% 24px;
+      flex-direction: column;
+      gap: 4px;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .mobile-menu a {
+      color: var(--muted); text-decoration: none;
+      font-size: 1rem; font-weight: 600;
+      padding: 13px 16px;
+      border-radius: 10px;
+      display: block;
+      transition: background .2s, color .2s;
+      border-bottom: 1px solid rgba(168,230,240,0.06);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { background: rgba(168,230,240,0.08); color: var(--gold); }
+    .mobile-menu .mobile-cta {
+      margin-top: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--navy) !important; font-weight: 800;
+      text-align: center; border-radius: 50px;
+      padding: 14px 16px; border-bottom: none !important;
+    }
+    /* Overlay */
+    .nav-overlay {
+      display: none; position: fixed; inset: 0; top: 68px;
+      background: rgba(0,0,0,0.5); z-index: 998;
+    }
+    .nav-overlay.open { display: block; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a1628 0%, #0d2244 40%, #0a3060 70%, #061830 100%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+      padding-top: 68px;
+    }
+    .hero-particles {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .particle {
+      position: absolute; border-radius: 50%;
+      background: var(--accent); opacity: 0.08;
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-30px) scale(1.1); }
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; padding: 80px 5%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(168,230,240,0.12); border: 1px solid rgba(168,230,240,0.3);
+      border-radius: 30px; padding: 6px 16px; font-size: 0.82rem;
+      color: var(--ice); margin-bottom: 20px;
+    }
+    .hero-badge::before { content: '❄'; font-size: 1rem; }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 900; line-height: 1.2;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .hero-title .highlight { color: var(--gold); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--ice); font-weight: 600; margin-bottom: 18px;
+    }
+    .hero-desc {
+      color: var(--muted); font-size: 1rem; line-height: 1.8;
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--navy); font-weight: 800; font-size: 1rem;
+      padding: 14px 32px; border-radius: 50px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245,200,66,.4); }
+    .btn-secondary {
+      background: transparent; border: 2px solid var(--ice);
+      color: var(--ice); font-weight: 700; font-size: 1rem;
+      padding: 14px 32px; border-radius: 50px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all .2s;
+    }
+    .btn-secondary:hover { background: var(--ice); color: var(--navy); }
+    .hero-stats {
+      display: flex; gap: 30px; margin-top: 40px;
+      border-top: 1px solid rgba(168,230,240,0.15);
+      padding-top: 30px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; color: var(--gold); display: block; }
+    .stat-lbl { font-size: 0.8rem; color: var(--muted); }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex; flex-direction: column; gap: 16px; align-items: center;
+    }
+    .hero-ac-card {
+      background: linear-gradient(135deg, rgba(17,40,80,0.9), rgba(13,31,60,0.95));
+      border: 1px solid rgba(168,230,240,0.2);
+      border-radius: 20px; padding: 28px;
+      position: relative; overflow: hidden;
+      width: 100%; max-width: 380px;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%,100% { box-shadow: 0 0 20px rgba(30,200,224,0.1); }
+      50%      { box-shadow: 0 0 40px rgba(30,200,224,0.25); }
+    }
+    .hero-ac-card::before {
+      content: ''; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(30,200,224,0.06) 0%, transparent 70%);
+    }
+    .ac-unit-icon { font-size: 5rem; text-align: center; margin-bottom: 12px; }
+    .ac-card-title { font-size: 1.1rem; font-weight: 700; color: var(--ice); text-align: center; margin-bottom: 16px; }
+    .ac-features-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ac-feat-tag {
+      background: rgba(30,200,224,0.1); border: 1px solid rgba(30,200,224,0.25);
+      border-radius: 8px; padding: 6px 10px;
+      font-size: 0.75rem; color: var(--ice); text-align: center;
+    }
+    .discount-badge {
+      background: linear-gradient(135deg, #e53e3e, #c53030);
+      border-radius: 16px; padding: 18px 28px;
+      text-align: center; width: 100%; max-width: 380px;
+      position: relative; overflow: hidden;
+    }
+    .discount-badge::before {
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px);
+    }
+    .discount-num { font-size: 3rem; font-weight: 900; color: var(--white); }
+    .discount-text { font-size: 1rem; color: rgba(255,255,255,0.85); font-weight: 600; }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; background: rgba(30,200,224,0.12);
+      border: 1px solid rgba(30,200,224,0.3); border-radius: 20px;
+      padding: 5px 16px; font-size: 0.8rem; color: var(--accent);
+      margin-bottom: 14px; font-weight: 600;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.25; margin-bottom: 14px;
+    }
+    .section-title .gold { color: var(--gold); }
+    .section-desc {
+      color: var(--muted); font-size: 1rem; line-height: 1.85;
+      max-width: 580px;
+    }
+    .section-header { margin-bottom: 56px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-desc { margin: 0 auto; }
+    .divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--accent));
+      border-radius: 2px; margin: 18px 0;
+    }
+    .divider.center { margin: 18px auto; }
+
+    /* ─── SERVICES (التأسيس والتركيب) ─── */
+    #services { background: var(--deep); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(168,230,240,0.12);
+      border-radius: var(--radius); padding: 32px 28px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(30,200,224,0.04), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: rgba(30,200,224,0.4); box-shadow: 0 16px 40px rgba(30,200,224,0.12); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { font-size: 3rem; margin-bottom: 18px; display: block; }
+    .service-card h3 { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+    .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+    .service-card .tag {
+      display: inline-block; margin-top: 16px;
+      background: rgba(245,200,66,0.1); border: 1px solid rgba(245,200,66,0.3);
+      color: var(--gold); border-radius: 20px; padding: 4px 14px; font-size: 0.78rem; font-weight: 700;
+    }
+    .featured-service {
+      border-color: rgba(245,200,66,0.35);
+      background: linear-gradient(135deg, rgba(245,200,66,0.06), rgba(17,40,80,0.5));
+    }
+    .featured-service .badge-feat {
+      position: absolute; top: 16px; left: 16px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--navy); border-radius: 20px; padding: 3px 12px; font-size: 0.72rem; font-weight: 800;
+    }
+
+    /* ─── WHY US ─── */
+    #why { background: linear-gradient(180deg, #0a1628, #0d2244); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .why-list { display: flex; flex-direction: column; gap: 20px; }
+    .why-item {
+      display: flex; align-items: flex-start; gap: 18px;
+      background: var(--card-bg); border: 1px solid rgba(168,230,240,0.1);
+      border-radius: var(--radius); padding: 20px 22px;
+      transition: border-color .25s;
+    }
+    .why-item:hover { border-color: rgba(30,200,224,0.35); }
+    .why-icon {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(30,200,224,0.2), rgba(30,200,224,0.05));
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .why-text h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .why-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+    .why-visual {
+      background: linear-gradient(135deg, rgba(17,40,80,0.8), rgba(13,31,60,0.9));
+      border: 1px solid rgba(168,230,240,0.15);
+      border-radius: 20px; padding: 40px 32px; text-align: center;
+    }
+    .big-number { font-size: 5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .big-label { color: var(--ice); font-size: 1.2rem; font-weight: 600; margin-bottom: 28px; }
+    .why-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .metric-box {
+      background: rgba(255,255,255,0.05); border-radius: 12px; padding: 18px;
+      border: 1px solid rgba(168,230,240,0.1);
+    }
+    .metric-box .num { font-size: 1.8rem; font-weight: 900; color: var(--accent); }
+    .metric-box .lbl { font-size: 0.75rem; color: var(--muted); }
+
+    /* ─── PROCESS ─── */
+    #process { background: var(--deep); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; top: 38px; right: 10%; left: 10%;
+      height: 2px; background: linear-gradient(90deg, var(--gold), var(--accent));
+      opacity: 0.3; z-index: 0;
+    }
+    .step { position: relative; z-index: 1; text-align: center; padding: 0 20px; }
+    .step-num {
+      width: 76px; height: 76px; border-radius: 50%; margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; font-weight: 900; color: var(--navy);
+      box-shadow: 0 0 0 6px rgba(245,200,66,0.15);
+    }
+    .step h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .step p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── MAINTENANCE ─── */
+    #maintenance { background: linear-gradient(180deg, #0a1628, #061630); }
+    .maint-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .maint-card {
+      background: linear-gradient(135deg, rgba(17,40,80,0.6), rgba(13,31,60,0.8));
+      border: 1px solid rgba(168,230,240,0.12);
+      border-radius: var(--radius); padding: 28px 24px;
+      transition: all .3s;
+    }
+    .maint-card:hover { transform: translateY(-4px); border-color: rgba(30,200,224,0.35); }
+    .maint-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .maint-icon-wrap {
+      width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(30,200,224,0.15), rgba(30,200,224,0.03));
+      display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+      border: 1px solid rgba(30,200,224,0.2);
+    }
+    .maint-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); }
+    .maint-card p { color: var(--muted); font-size: 0.87rem; line-height: 1.7; }
+    .check-list { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; }
+    .check-list li {
+      list-style: none; display: flex; align-items: center; gap: 8px;
+      font-size: 0.83rem; color: var(--muted);
+    }
+    .check-list li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+
+    /* ─── OFFERS ─── */
+    #offers { background: var(--deep); }
+    .offers-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+    .offer-card {
+      background: linear-gradient(135deg, #1a3a6e, #0d1f3c);
+      border: 2px solid rgba(245,200,66,0.3);
+      border-radius: 20px; padding: 40px 36px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .offer-card::after {
+      content: ''; position: absolute; top: -40%; right: -20%;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,200,66,0.1), transparent);
+    }
+    .offer-pct { font-size: 5rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
+    .offer-sub { font-size: 1.3rem; font-weight: 700; color: var(--white); margin: 8px 0; }
+    .offer-note { font-size: 0.88rem; color: var(--muted); }
+    .gifts-list { display: flex; flex-direction: column; gap: 16px; }
+    .gift-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(245,200,66,0.06); border: 1px solid rgba(245,200,66,0.2);
+      border-radius: 12px; padding: 16px 20px;
+    }
+    .gift-icon { font-size: 2rem; }
+    .gift-text h4 { font-size: 0.95rem; font-weight: 700; color: var(--gold); }
+    .gift-text p { font-size: 0.82rem; color: var(--muted); }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { background: linear-gradient(180deg, #061630, #0a1628); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .review-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(168,230,240,0.1);
+      border-radius: var(--radius); padding: 26px 24px;
+    }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .review-text { color: var(--muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 18px; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; font-weight: 700; flex-shrink: 0;
+    }
+    .reviewer-name { font-size: 0.9rem; font-weight: 700; color: var(--white); }
+    .reviewer-loc { font-size: 0.78rem; color: var(--accent); }
+
+    /* ─── COVERAGE ─── */
+    #coverage { background: var(--deep); }
+    .coverage-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .areas-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+    .area-tag {
+      background: rgba(30,200,224,0.08); border: 1px solid rgba(30,200,224,0.2);
+      border-radius: 8px; padding: 10px 14px;
+      font-size: 0.85rem; color: var(--ice); text-align: center; font-weight: 500;
+      transition: all .2s;
+    }
+    .area-tag:hover { background: rgba(30,200,224,0.16); border-color: rgba(30,200,224,0.4); }
+    .map-visual {
+      background: linear-gradient(135deg, rgba(17,40,80,0.8), rgba(13,31,60,0.9));
+      border: 1px solid rgba(168,230,240,0.15); border-radius: 20px;
+      padding: 50px; text-align: center; min-height: 300px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .map-pin { font-size: 5rem; }
+    .map-city { font-size: 2rem; font-weight: 900; color: var(--gold); margin: 10px 0; }
+    .map-sub { color: var(--ice); font-size: 1rem; }
+
+    /* ─── CTA ─── */
+    #cta {
+      background: linear-gradient(135deg, #0d2244, #1a3a6e);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: ''; position: absolute; top: -50%; left: -20%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,200,224,0.08), transparent);
+    }
+    .cta-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; margin-bottom: 14px; }
+    .cta-desc { color: var(--muted); font-size: 1rem; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .phone-btn {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white; font-weight: 800; font-size: 1.1rem;
+      padding: 16px 36px; border-radius: 50px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .phone-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(37,211,102,.35); }
+    .call-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--navy); font-weight: 800; font-size: 1.1rem;
+      padding: 16px 36px; border-radius: 50px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .call-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(245,200,66,.4); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #040e1e; padding: 50px 5% 24px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    .footer-brand img { height: 52px; border-radius: 8px; margin-bottom: 14px; }
+    .footer-brand p { color: var(--muted); font-size: 0.88rem; line-height: 1.75; max-width: 280px; }
+    .footer-col h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 18px; position: relative; }
+    .footer-col h4::after { content: ''; display: block; width: 32px; height: 3px; background: var(--gold); border-radius: 2px; margin-top: 6px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .contact-item { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; }
+    .contact-item span:first-child { font-size: 1.1rem; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── FLOATING BUTTONS ─── */
+    .float-btns {
+      position: fixed; bottom: 28px; left: 24px; z-index: 999;
+      display: flex; flex-direction: column; gap: 14px; align-items: center;
+    }
+    .float-btn {
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+    }
+    .float-btn:hover { transform: scale(1.12); }
+    .float-btn svg { width: 28px; height: 28px; fill: white; }
+    .float-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
+    .float-call { background: linear-gradient(135deg, #f5c842, #e8b820); }
+    .float-call svg { fill: #0a1628; }
+    .float-label {
+      position: absolute; right: 68px;
+      background: rgba(10,22,40,0.9); color: var(--white);
+      font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+      padding: 5px 12px; border-radius: 20px;
+      border: 1px solid rgba(168,230,240,0.2);
+      opacity: 0; transition: opacity .25s; pointer-events: none;
+    }
+    .float-btn:hover .float-label { opacity: 1; }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s, transform .6s; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .offers-inner { grid-template-columns: 1fr; }
+      .coverage-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none !important; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 70px 5%; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.jpeg" alt="شركة الأفضل" onerror="this.style.display='none'"/>
+    <div class="nav-logo-text">
+      شركة الأفضل
+      <span>للتبريد والتكييف</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">خدماتنا</a></li>
+    <li><a href="#maintenance">الصيانة</a></li>
+    <li><a href="#why">لماذا نحن</a></li>
+    <li><a href="#offers">العروض</a></li>
+    <li><a href="#coverage">نطاق العمل</a></li>
+  </ul>
+  <a href="tel:0561534516" class="nav-cta">📞 اتصل الآن</a>
+  <button class="hamburger" id="hamburger" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">🔧 خدماتنا</a>
+  <a href="#maintenance" onclick="closeMenu()">🛠️ الصيانة</a>
+  <a href="#why" onclick="closeMenu()">⭐ لماذا نحن</a>
+  <a href="#offers" onclick="closeMenu()">🎁 العروض</a>
+  <a href="#coverage" onclick="closeMenu()">📍 نطاق العمل</a>
+  <a href="#testimonials" onclick="closeMenu()">💬 آراء العملاء</a>
+  <a href="tel:0561534516" class="mobile-cta" onclick="closeMenu()">📞 اتصل الآن — 0561534516</a>
+</div>
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-particles">
+    <div class="particle" style="width:120px;height:120px;top:15%;right:10%;animation-delay:0s;"></div>
+    <div class="particle" style="width:60px;height:60px;top:60%;right:40%;animation-delay:2s;"></div>
+    <div class="particle" style="width:80px;height:80px;bottom:20%;left:20%;animation-delay:4s;"></div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">خبرة موثوقة في جدة منذ سنوات</div>
+      <h1 class="hero-title">
+        <span class="highlight">شركة الأفضل</span><br/>
+        للتبريد والتكييف
+      </h1>
+      <p class="hero-subtitle">تأسيس · تركيب · صيانة جميع أنواع المكيفات</p>
+      <p class="hero-desc">
+        نقدم أعلى مستوى من الخدمات في تأسيس وتركيب وصيانة مكيفات السبليت والمركزي داخل جدة، بأيدي فنيين متخصصين وضمان على جميع الأعمال.
+      </p>
+      <div class="hero-btns">
+        <a href="https://wa.me/966561534516" target="_blank" class="btn-primary">💬 تواصل على واتساب</a>
+        <a href="tel:0561534516" class="btn-secondary">📞 اتصل بنا</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">+500</span>
+          <span class="stat-lbl">عميل راضٍ</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">10+</span>
+          <span class="stat-lbl">سنوات خبرة</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">50%</span>
+          <span class="stat-lbl">خصم حالي</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-ac-card">
+        <div class="ac-unit-icon">🌬️</div>
+        <div class="ac-card-title">جميع أنواع المكيفات</div>
+        <div class="ac-features-mini">
+          <span class="ac-feat-tag">سبليت</span>
+          <span class="ac-feat-tag">مركزي</span>
+          <span class="ac-feat-tag">كاسيت</span>
+          <span class="ac-feat-tag">شباك</span>
+        </div>
+      </div>
+      <div class="discount-badge">
+        <span class="discount-num">50%</span>
+        <div class="discount-text">🎉 خصم على جميع الخدمات</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header center fade-up">
+      <span class="section-tag">خدماتنا الأساسية</span>
+      <h2 class="section-title">تأسيس وتركيب وصيانة<br/><span class="gold">بأعلى مستوى من الاحترافية</span></h2>
+      <div class="divider center"></div>
+      <p class="section-desc">نتخصص في تأسيس الشبكات الكاملة للتكييف المركزي، تركيب جميع أنواع المكيفات، وصيانة دورية متكاملة لضمان أداء مثالي طوال العام.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card featured-service fade-up">
+        <span class="badge-feat">⭐ الأكثر طلباً</span>
+        <span class="service-icon">🏗️</span>
+        <h3>تأسيس أنظمة التكييف</h3>
+        <p>نقوم بتأسيس الشبكات الكاملة للتكييف المركزي في المشاريع والمباني من الصفر — تصميم الشبكة، تمديد المواسير والمجاري الهوائية، وتجهيز الموقع بالكامل قبل التركيب.</p>
+        <span class="tag">تكييف مركزي · مباني · مشاريع</span>
+      </div>
+
+      <div class="service-card featured-service fade-up">
+        <span class="badge-feat">⭐ الأكثر طلباً</span>
+        <span class="service-icon">🔧</span>
+        <h3>تركيب جميع أنواع المكيفات</h3>
+        <p>تركيب احترافي للمكيفات السبليت، الكاسيت، المركزي، والشباك. نضمن التركيب الصحيح وفق المعايير الهندسية مع ضمان على العمل وكفاءة التبريد.</p>
+        <span class="tag">سبليت · مركزي · كاسيت · شباك</span>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">🛠️</span>
+        <h3>صيانة المكيفات السبليت</h3>
+        <p>صيانة دورية وطارئة لجميع موديلات مكيفات السبليت — تنظيف الفلتر، فحص الفريون، تشخيص الأعطال، وإصلاحها فورياً بقطع غيار أصلية.</p>
+        <span class="tag">صيانة · قطع أصلية</span>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">🏢</span>
+        <h3>صيانة التكييف المركزي</h3>
+        <p>نتخصص في صيانة أنظمة التكييف المركزي للمولات والمكاتب والمستشفيات والفنادق، مع تقديم عقود صيانة دورية سنوية بأسعار منافسة.</p>
+        <span class="tag">مركزي · عقود صيانة</span>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">❄️</span>
+        <h3>تعبئة الفريون الأصلي</h3>
+        <p>نستخدم فريون أصلي معتمد بالنوع المناسب لكل جهاز لضمان الأداء الأمثل وحماية الكومبروسر من التلف، مع فحص تسريبات الغاز.</p>
+        <span class="tag">فريون أصلي · R410 · R22</span>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">🔩</span>
+        <h3>تمديد نحاس أمريكي</h3>
+        <p>نمد أنابيب النحاس الأمريكي الأصلي مع الضمان الكامل على العمل — لضمان عدم التسريب وطول عمر التكييف دون مشاكل مستقبلية.</p>
+        <span class="tag">نحاس أمريكي · ضمان</span>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">💧</span>
+        <h3>حل مشكلة التنقيط نهائياً</h3>
+        <p>نحدد مصدر مشكلة التنقيط ونحلها جذرياً — سواء كانت انسداد في أنبوب الصرف، تسريب في الكويل، أو ضغط فريون غير صحيح.</p>
+        <span class="tag">صرف · تنقيط</span>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">🔊</span>
+        <h3>إصلاح أصوات المكيف</h3>
+        <p>نشخص ونصلح الأصوات المزعجة في المكيف — سواء كانت من الكومبروسر الخارجي، الفان الداخلي، أو مشكلة في اللولب والتثبيت.</p>
+        <span class="tag">تشخيص · إصلاح</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-header center fade-up">
+      <span class="section-tag">كيف نعمل</span>
+      <h2 class="section-title">خطوات الخدمة<br/><span class="gold">سريعة واحترافية</span></h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num">١</div>
+        <h4>تواصل معنا</h4>
+        <p>اتصل أو تواصل على واتساب وأخبرنا بمشكلتك في أي وقت</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">٢</div>
+        <h4>تحديد الموعد</h4>
+        <p>نحدد موعداً مناسباً لك ونصل في الوقت المحدد تماماً</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">٣</div>
+        <h4>فحص وتشخيص</h4>
+        <p>يقوم فنيينا المتخصصين بفحص شامل وتشخيص دقيق للمشكلة</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">٤</div>
+        <h4>تنفيذ الخدمة</h4>
+        <p>تنفيذ العمل باحترافية عالية مع استخدام أفضل المواد والقطع</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">٥</div>
+        <h4>ضمان الجودة</h4>
+        <p>تسليم العمل مع ضمان وخدمة متابعة ما بعد الصيانة</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAINTENANCE -->
+<section id="maintenance">
+  <div class="section-inner">
+    <div class="section-header center fade-up">
+      <span class="section-tag">الصيانة الشاملة</span>
+      <h2 class="section-title">صيانة كل ما <span class="gold">يتعلق بتكييفك</span></h2>
+      <div class="divider center"></div>
+      <p class="section-desc">نغطي جميع أنواع المكيفات وجميع الأعطال — من أبسط مشكلة حتى أعقد عطل في المنظومة الكاملة.</p>
+    </div>
+    <div class="maint-grid">
+
+      <div class="maint-card fade-up">
+        <div class="maint-header">
+          <div class="maint-icon-wrap">🌀</div>
+          <h3>مكيف سبليت</h3>
+        </div>
+        <p>صيانة شاملة لجميع ماركات السبليت — كاريير، ميتسوبيشي، سامسونج، LG، جنرال، هايسنس وغيرها.</p>
+        <ul class="check-list">
+          <li>تنظيف الفلتر والكويل</li>
+          <li>فحص الفريون وإعادة الشحن</li>
+          <li>تنظيف وحدة الصرف الخارجية</li>
+          <li>فحص الكومبروسر والكبلات</li>
+          <li>قياس درجات الحرارة والكفاءة</li>
+        </ul>
+      </div>
+
+      <div class="maint-card fade-up">
+        <div class="maint-header">
+          <div class="maint-icon-wrap">🏗️</div>
+          <h3>تكييف مركزي</h3>
+        </div>
+        <p>صيانة متكاملة لأنظمة التكييف المركزي في الفلل والعمارات والمكاتب والمشاريع التجارية.</p>
+        <ul class="check-list">
+          <li>صيانة الشيلر والتوزيع</li>
+          <li>تنظيف قنوات الهواء</li>
+          <li>فحص الضخات والمحركات</li>
+          <li>فحص نظام التحكم</li>
+          <li>عقود صيانة دورية</li>
+        </ul>
+      </div>
+
+      <div class="maint-card fade-up">
+        <div class="maint-header">
+          <div class="maint-icon-wrap">🔲</div>
+          <h3>مكيف كاسيت</h3>
+        </div>
+        <p>صيانة مكيفات الكاسيت المثبتة في أسقف المكاتب والمحلات التجارية مع إصلاح جميع الأعطال.</p>
+        <ul class="check-list">
+          <li>تنظيف الفلاتر والكويل الداخلي</li>
+          <li>فحص نظام التوزيع</li>
+          <li>إصلاح مشاكل الصوت والاهتزاز</li>
+          <li>فحص الريموت والتحكم</li>
+        </ul>
+      </div>
+
+      <div class="maint-card fade-up">
+        <div class="maint-header">
+          <div class="maint-icon-wrap">🪟</div>
+          <h3>مكيف شباك</h3>
+        </div>
+        <p>صيانة وإصلاح مكيفات الشباك القديمة والحديثة مع توفير قطع الغيار الأصلية.</p>
+        <ul class="check-list">
+          <li>إصلاح الكومبروسر</li>
+          <li>تبديل المروحة والمحرك</li>
+          <li>إصلاح مشاكل التبريد</li>
+          <li>إصلاح الأعطال الكهربائية</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="fade-up">
+        <span class="section-tag">لماذا نحن</span>
+        <h2 class="section-title">الخبرة والجودة <span class="gold">في خدمة واحدة</span></h2>
+        <div class="divider"></div>
+        <p class="section-desc" style="margin-bottom:32px;">نجمع بين الخبرة الطويلة والتقنية الحديثة لنقدم خدمة تكييف لا مثيل لها في جدة.</p>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon">👨‍🔧</div>
+            <div class="why-text">
+              <h4>فنيون معتمدون ومتخصصون</h4>
+              <p>فريق مدرب ومؤهل يعمل بالأدوات المتخصصة لضمان أعلى جودة في التنفيذ.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">⚡</div>
+            <div class="why-text">
+              <h4>سرعة في الاستجابة والتنفيذ</h4>
+              <p>نصل إليك في أقصر وقت ممكن وننجز العمل في نفس الزيارة في معظم الحالات.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🛡️</div>
+            <div class="why-text">
+              <h4>ضمان على جميع الأعمال</h4>
+              <p>نضمن جميع الأعمال المنجزة ونقف خلف جودتنا بالتام والكمال.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">💰</div>
+            <div class="why-text">
+              <h4>أسعار منافسة وشفافة</h4>
+              <p>أسعار واضحة بدون تكاليف خفية، وخصم 50% على خدماتنا الآن.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual fade-up">
+        <div class="big-number">+10</div>
+        <div class="big-label">سنوات من الخبرة في جدة</div>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;">نفخر بثقة عملائنا ونسعى دائماً لتجاوز توقعاتهم في كل خدمة نقدمها.</p>
+        <div class="why-metrics">
+          <div class="metric-box">
+            <div class="num">+500</div>
+            <div class="lbl">عملية تركيب ناجحة</div>
+          </div>
+          <div class="metric-box">
+            <div class="num">98%</div>
+            <div class="lbl">رضا العملاء</div>
+          </div>
+          <div class="metric-box">
+            <div class="num">24/7</div>
+            <div class="lbl">خدمة الطوارئ</div>
+          </div>
+          <div class="metric-box">
+            <div class="num">100%</div>
+            <div class="lbl">قطع أصلية</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section id="offers">
+  <div class="section-inner">
+    <div class="section-header center fade-up">
+      <span class="section-tag">العروض الحالية</span>
+      <h2 class="section-title">عروض <span class="gold">لا تفوتك</span></h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="offers-inner">
+      <div class="offer-card fade-up">
+        <span class="offer-pct">50%</span>
+        <div class="offer-sub">خصم على جميع الخدمات</div>
+        <p class="offer-note">سارٍ الآن على جميع أعمال التركيب والصيانة والتأسيس</p>
+        <a href="tel:0561534516" class="btn-primary" style="margin-top:24px;justify-content:center;">📞 احجز الآن</a>
+      </div>
+      <!-- <div class="gifts-list fade-up">
+        <h3 style="color:var(--white);font-size:1.2rem;margin-bottom:8px;">هدايا مجانية مع الخدمة</h3>
+        <div class="gift-item">
+          <span class="gift-icon">🎁</span>
+          <div class="gift-text">
+            <h4>معطر مكيف مجاناً</h4>
+            <p>معطر هواء خاص بالمكيف يجعل هواء منزلك نقياً وعطراً</p>
+          </div>
+        </div>
+        <div class="gift-item">
+          <span class="gift-icon">🎁</span>
+          <div class="gift-text">
+            <h4>فحص مجاني للجهاز</h4>
+            <p>فحص شامل لكل أجزاء المكيف بدون أي تكلفة إضافية</p>
+          </div>
+        </div>
+        <div class="gift-item">
+          <span class="gift-icon">🛡️</span>
+          <div class="gift-text">
+            <h4>ضمان على الخدمة</h4>
+            <p>ضمان شامل على جميع الأعمال المنجزة لراحة بالك</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-header center fade-up">
+      <span class="section-tag">آراء عملائنا</span>
+      <h2 class="section-title">ماذا يقول <span class="gold">عملاؤنا</span></h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"قمت بتأسيس شبكة التكييف المركزي لفيلتي الجديدة معهم، العمل كان احترافياً جداً والتسليم في الوقت المحدد. فريق محترم وأسعار ممتازة."</p>
+        <div class="reviewer">
+          <div class="avatar" style="background:linear-gradient(135deg,#1a3a6e,#0d2244);">م</div>
+          <div>
+            <div class="reviewer-name">محمد العتيبي</div>
+            <div class="reviewer-loc">📍 جدة - حي الصفا</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"مكيفي كان يعمل بشكل سيء ويصدر أصوات. جاء الفنيين وعرفوا المشكلة فوراً وأصلحوها. الآن يعمل أحسن من أول ما اشتريته. شكراً جزيلاً!"</p>
+        <div class="reviewer">
+          <div class="avatar" style="background:linear-gradient(135deg,#2d6a4f,#1b4332);">ف</div>
+          <div>
+            <div class="reviewer-name">فيصل الغامدي</div>
+            <div class="reviewer-loc">📍 جدة - حي الروضة</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"عندي مكتب فيه 8 مكيفات سبليت. اتعاقدت معهم على صيانة دورية وما ندمت. خدمة ممتازة وأسعار منافسة. أنصح الجميع بالتعامل معهم."</p>
+        <div class="reviewer">
+          <div class="avatar" style="background:linear-gradient(135deg,#7b2d8b,#4a1a6e);">ع</div>
+          <div>
+            <div class="reviewer-name">عبدالله الزهراني</div>
+            <div class="reviewer-loc">📍 جدة - حي النزهة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage">
+  <div class="section-inner">
+    <div class="coverage-inner">
+      <div class="fade-up">
+        <span class="section-tag">نطاق الخدمة</span>
+        <h2 class="section-title">نخدم جميع أحياء <span class="gold">جدة</span></h2>
+        <div class="divider"></div>
+        <p class="section-desc" style="margin-bottom:24px;">فريقنا المتخصص يصلك في أي حي داخل جدة بأسرع وقت ممكن.</p>
+        <div class="areas-list">
+          <div class="area-tag">الروضة</div>
+          <div class="area-tag">الصفا</div>
+          <div class="area-tag">النزهة</div>
+          <div class="area-tag">الحمراء</div>
+          <div class="area-tag">العزيزية</div>
+          <div class="area-tag">المروة</div>
+          <div class="area-tag">الشاطئ</div>
+          <div class="area-tag">النسيم</div>
+          <div class="area-tag">البوادي</div>
+          <div class="area-tag">الرحاب</div>
+          <div class="area-tag">الفيصلية</div>
+          <div class="area-tag">وسط البلد</div>
+          <div class="area-tag">أبحر</div>
+          <div class="area-tag">الكورنيش</div>
+          <div class="area-tag">ومناطق أخرى</div>
+          <div class="area-tag">+ جميع الأحياء</div>
+        </div>
+      </div>
+      <div class="map-visual fade-up">
+        <div class="map-pin">📍</div>
+        <div class="map-city">جـدة</div>
+        <div class="map-sub">نخدم جميع أحياء المدينة</div>
+        <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(168,230,240,0.15);">
+          <a href="tel:0561534516" style="color:var(--gold);text-decoration:none;font-size:1.3rem;font-weight:800;">
+            📞 0561534516
+          </a>
+          <div style="color:var(--muted);font-size:0.85rem;margin-top:6px;">متاحون 7 أيام في الأسبوع</div>
+          <div style="margin-top:14px;">
+            <a href="http://alafdalsa.com" target="_blank" style="color:var(--accent);font-size:0.88rem;">🌐 alafdalsa.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="section-inner" style="position:relative;z-index:1;">
+    <div class="fade-up">
+      <h2 class="cta-title">مكيفك يستاهل <span style="color:var(--gold)">الأفضل!</span></h2>
+      <p class="cta-desc">لا تترك مكيفك يعاني — تواصل معنا الآن واستمتع بتبريد مثالي مع خصم 50% على جميع خدماتنا.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/966561534516" target="_blank" class="phone-btn">
+          <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          تواصل على واتساب
+        </a>
+        <a href="tel:0561534516" class="call-btn">
+          📞 0561534516
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.jpeg" alt="الأفضل" onerror="this.style.display='none'"/>
+        <p>شركة الأفضل للتبريد والتكييف — متخصصون في تأسيس وتركيب وصيانة جميع أنواع المكيفات داخل جدة بأعلى معايير الجودة والاحترافية.</p>
+        <div style="margin-top:16px;">
+          <div class="contact-item"><span>📞</span><span>0561534516</span></div>
+          <div class="contact-item"><span>📍</span><span>جدة، المملكة العربية السعودية</span></div>
+          <div class="contact-item"><span>🌐</span><span>alafdalsa.com</span></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>خدماتنا</h4>
+        <ul>
+          <li><a href="#services">تأسيس التكييف</a></li>
+          <li><a href="#services">تركيب المكيفات</a></li>
+          <li><a href="#maintenance">صيانة السبليت</a></li>
+          <li><a href="#maintenance">صيانة المركزي</a></li>
+          <li><a href="#services">تعبئة الفريون</a></li>
+          <li><a href="#services">حل مشكلة التنقيط</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#hero">الرئيسية</a></li>
+          <li><a href="#why">لماذا نحن</a></li>
+          <li><a href="#process">كيف نعمل</a></li>
+          <li><a href="#offers">العروض</a></li>
+          <li><a href="#testimonials">آراء العملاء</a></li>
+          <li><a href="#coverage">مناطق الخدمة</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 شركة الأفضل للتبريد والتكييف — جميع الحقوق محفوظة</span>
+      <span>🌐 alafdalsa.com</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/966561534516" target="_blank" class="float-btn float-wa" title="واتساب">
+    <span class="float-label">تواصل على واتساب</span>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a href="tel:0561534516" class="float-btn float-call" title="اتصال">
+    <span class="float-label">اتصل بنا الآن</span>
+    <svg viewBox="0 0 24 24" fill="#0a1628"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  // Close on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 680) closeMenu();
+  });
+
+  // Scroll animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
